@@ -1,548 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="My personal Landing Page.">
-    <meta name="author" content="Ali Mokh">
-    <title>Ali Mokh Landing page</title>
-    <!-- font icons -->
-    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
-    <!-- Bootstrap + JohnDoe main styles -->
-	<link rel="stylesheet" href="assets/css/johndoe.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ali Mokh — Senior AI Researcher and technical leader building production-grade GenAI, GraphRAG, agentic workflows, and AI systems for telecom.">
+  <meta name="author" content="Ali Mokh">
+  <meta name="theme-color" content="#08111f">
+  <title>Ali Mokh | AI Researcher & Technical Leader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07101d;
+      --surface: rgba(17, 30, 49, .74);
+      --surface-solid: #111e31;
+      --text: #eef5ff;
+      --muted: #9fb0c6;
+      --line: rgba(255, 255, 255, .1);
+      --primary: #68e1fd;
+      --primary-strong: #20bfe6;
+      --accent: #9d8cff;
+      --success: #7ce6a3;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .35);
+      --radius: 22px;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Manrope, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 5%, rgba(104, 225, 253, .14), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(157, 140, 255, .15), transparent 28%),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .container { width: min(calc(100% - 40px), var(--max)); margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 7px 12px;
+      border: 1px solid rgba(104, 225, 253, .22);
+      border-radius: 999px;
+      color: var(--primary);
+      background: rgba(104, 225, 253, .06);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 16px var(--success);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 16, 29, .78);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -.03em;
+    }
+    .brand span { color: var(--primary); }
+    .nav-links { display: flex; gap: 26px; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: .93rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      padding: 10px 16px;
+      border: 1px solid rgba(104, 225, 253, .4);
+      border-radius: 12px;
+      color: var(--primary) !important;
+    }
+
+    .hero {
+      min-height: calc(100vh - 74px);
+      display: grid;
+      align-items: center;
+      padding: 92px 0 72px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 72px;
+      align-items: center;
+    }
+    h1, h2, h3 { font-family: "Space Grotesk", sans-serif; margin: 0; line-height: 1.08; }
+    h1 {
+      margin-top: 22px;
+      font-size: clamp(3rem, 7vw, 6.4rem);
+      letter-spacing: -.065em;
+      max-width: 890px;
+    }
+    h1 .gradient {
+      background: linear-gradient(110deg, var(--primary), #9ae9ff 46%, var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-copy {
+      margin: 28px 0 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 13px;
+      font-weight: 800;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #051018; background: var(--primary); box-shadow: 0 12px 30px rgba(32, 191, 230, .22); }
+    .btn-secondary { color: var(--text); border: 1px solid var(--line); background: rgba(255,255,255,.035); }
+
+    .hero-card {
+      position: relative;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025));
+      box-shadow: var(--shadow);
+    }
+    .portrait {
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 21px;
+      background: var(--surface-solid);
+    }
+    .status-card {
+      position: absolute;
+      left: -38px;
+      bottom: 34px;
+      width: min(260px, 76%);
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(9, 20, 35, .92);
+      box-shadow: var(--shadow);
+    }
+    .status-card strong { display: block; font-family: "Space Grotesk"; font-size: 1rem; }
+    .status-card span { color: var(--muted); font-size: .88rem; }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 58px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--line);
+    }
+    .metric { padding: 25px; background: rgba(8, 20, 36, .95); }
+    .metric strong { display: block; font-family: "Space Grotesk"; font-size: 1.55rem; color: var(--primary); }
+    .metric span { color: var(--muted); font-size: .88rem; }
+
+    section { padding: 104px 0; }
+    .section-head { display: grid; grid-template-columns: .72fr 1.28fr; gap: 60px; align-items: end; margin-bottom: 46px; }
+    .section-head h2 { font-size: clamp(2.1rem, 5vw, 4rem); letter-spacing: -.045em; }
+    .section-head p { margin: 0; color: var(--muted); font-size: 1.05rem; max-width: 660px; }
+
+    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      backdrop-filter: blur(12px);
+    }
+    .card .number { color: var(--primary); font-family: "Space Grotesk"; font-weight: 700; }
+    .card h3 { margin-top: 30px; font-size: 1.35rem; }
+    .card p { color: var(--muted); margin: 14px 0 0; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+    .tag { padding: 6px 10px; border-radius: 999px; color: #c8d6e8; background: rgba(255,255,255,.05); font-size: .78rem; font-weight: 700; }
+
+    .experience { display: grid; gap: 14px; }
+    .role {
+      display: grid;
+      grid-template-columns: 190px 1fr auto;
+      gap: 28px;
+      align-items: start;
+      padding: 26px 28px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.025);
+    }
+    .role-time { color: var(--primary); font-weight: 800; font-size: .9rem; }
+    .role h3 { font-size: 1.22rem; }
+    .role p { margin: 7px 0 0; color: var(--muted); }
+    .role-company { color: #c7d5e7; font-weight: 700; white-space: nowrap; }
+
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .project {
+      min-height: 310px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background:
+        linear-gradient(145deg, rgba(104,225,253,.075), transparent 48%),
+        var(--surface);
+    }
+    .project h3 { font-size: 1.65rem; }
+    .project p { color: var(--muted); max-width: 560px; }
+    .project-link { color: var(--primary); font-weight: 800; }
+
+    .contact {
+      padding: 58px;
+      border: 1px solid rgba(104, 225, 253, .2);
+      border-radius: 30px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(104,225,253,.13), transparent 55%),
+        var(--surface-solid);
+      box-shadow: var(--shadow);
+    }
+    .contact h2 { font-size: clamp(2.2rem, 6vw, 4.5rem); letter-spacing: -.05em; }
+    .contact p { max-width: 670px; margin: 20px auto 30px; color: var(--muted); }
+
+    footer { padding: 34px 0 42px; color: var(--muted); font-size: .88rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); padding-top: 28px; }
+    .footer-links { display: flex; gap: 18px; }
+
+    @media (max-width: 900px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero-grid, .section-head { grid-template-columns: 1fr; }
+      .hero-card { max-width: 500px; margin: 0 auto; }
+      .status-card { left: 18px; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .card-grid { grid-template-columns: 1fr; }
+      .role { grid-template-columns: 1fr; gap: 10px; }
+      .role-company { white-space: normal; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(calc(100% - 28px), var(--max)); }
+      .hero { padding-top: 62px; }
+      .hero-grid { gap: 44px; }
+      .metrics { grid-template-columns: 1fr; }
+      section { padding: 78px 0; }
+      .projects { grid-template-columns: 1fr; }
+      .contact { padding: 40px 22px; }
+      .footer-row { flex-direction: column; }
+    }
+  </style>
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-    <a href="components.html" class="btn btn-primary btn-component" data-spy="affix" data-offset-top="600"><i class="ti-shift-left-alt"></i> Components</a>
-    <header class="header">
-        <div class="container">
-            <ul class="social-icons pt-3">
-               <!-- <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-google" aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
-                --><li class="social-item"><a class="social-link text-light" href="https://github.com/Amokh2018"><i class="ti-github" aria-hidden="true"></i></a></li>
-            </ul>  
-            <div class="header-content">
-                <h4 class="header-subtitle" >Hello, I am</h4>
-                <h1 class="header-title">Ali Mokh</h1>
-                <h4 class="header-subtitle" >Professional Trainer and Lecturer <br> Machine Learning Operations Engineer </h4>
-                <span class="badge badge-pill badge-primary">Artifical Intelligence</span>
-                <span class="badge badge-pill badge-primary">Machine Learning</span>
-                <span class="badge badge-pill badge-primary">MLOps</span>
-                <span class="badge badge-pill badge-primary">Reinforcement Learning</span>
-                <span class="badge badge-pill badge-primary">AWS services</span><br>
-                <span class="badge badge-pill badge-success">4G LTE</span>
-                <span class="badge badge-pill badge-success">5G</span>
-                <span class="badge badge-pill badge-success">Cloud RAN</span>
-                <span class="badge badge-pill badge-success">IoT</span>
-                
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top">Ali<span>.</span>Mokh</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#expertise">Expertise</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Work</a>
+        <a class="nav-cta" href="#contact">Let’s talk</a>
+      </nav>
+    </div>
+  </header>
 
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">AI research · engineering · delivery</span>
+            <h1>Building AI systems that move from <span class="gradient">research to impact.</span></h1>
+            <p class="hero-copy">I am a Senior AI Researcher and technical leader focused on production-grade GenAI, GraphRAG, agentic workflows, MLOps, and AI-native telecom systems.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#projects">Explore my work →</a>
+              <a class="btn btn-secondary" href="assets/pdf/my_CV.pdf" target="_blank" rel="noopener">View résumé</a>
+              <a class="btn btn-secondary" href="https://github.com/Amokh2018" target="_blank" rel="noopener">GitHub</a>
             </div>
-        </div>
-    </header>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white" data-spy="affix" data-offset-top="510">
-        <div class="container">
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse mt-sm-20 navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#resume" class="nav-link">Resume</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav brand">
-                    <img src="assets/imgs/avatar.png" alt="" class="brand-img">
-                    <li class="brand-txt">
-                        <h5 class="brand-title">Ali Mokh</h5>
-                        <div class="brand-subtitle">AI/MLOps Research Engineer</div>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="#portfolio" class="nav-link">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#blog" class="nav-link">Blog</a>
-                    </li>
-                    <li class="nav-item last-item">
-                        <a href="#contact" class="nav-link">Contact</a>
-                    </li>
-                </ul>
+          </div>
+          <div class="hero-card">
+            <img class="portrait" src="assets/imgs/avatar.png" alt="Portrait of Ali Mokh">
+            <div class="status-card">
+              <strong>Senior Researcher Concept AI</strong>
+              <span>Ericsson France · Paris</span>
             </div>
+          </div>
         </div>
-    </nav>
-    <section class="section" id="home">
-        <div class="container">
-            <h2 class="mb-5">Biography <span class="text-danger"></span></h2>
-            
-                <h4 class="mb-3">Senior Researcher in MLOps and Telecommunications. </h4>
-            
-                    <h5>Holding a PhD in Digital Communication and 5+ years of experience in AI/ML and Telecommunications,
-                    MLOps for 5G/6G Radio Access Network automation. </h5> 
-                    <br>
-                    As a seasoned professional in the field of telecommunications and data science, 
-                    I bring a wealth of expertise to my role as a trainer and consultant. 
-                    With a solid foundation established through my engineering diploma, master's degree, and PhD,
-                    I have spent over three years as a professional trainer, specializing in 4G and 5G mobile technologies, 
-                    as well as machine learning and cloud services. 
-                    As a university lecturer since 2019, I have shared my knowledge in programming, data science, 
-                    and telecommunications with eager minds. 
-                    Currently, I focus on leveraging my expertise to develop MLOps architectures for reinforcement learning in AWS, pushing the boundaries of innovation in the telecommunications industry.
-                    With a passion for education and a commitment to driving technological advancement, I am dedicated to empowering individuals and organizations alike to thrive in the digital age.
-                    </p></h6>
-                <button class="btn btn-outline-danger" href="assets/pdf/my_CV.pdf"><i class="icon-down-circled2 "></i>Download My CV</button>
-                
-       
+
+        <div class="metrics" aria-label="Career highlights">
+          <div class="metric"><strong>10+ yrs</strong><span>Telecom and applied research</span></div>
+          <div class="metric"><strong>5+ yrs</strong><span>AI and machine learning</span></div>
+          <div class="metric"><strong>PhD</strong><span>Digital communications</span></div>
+          <div class="metric"><strong>IEEE</strong><span>Senior Member</span></div>
         </div>
+      </div>
     </section>
 
-        
-<!--Section Expertize-->
-
-    <section class="section" id="about">
-        <div class="container">
-            <h2 class="mb-5 pb-4"><span class="text-danger">My</span> Expertise</h2>
-            <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-widget text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <a ><h5 class="mb-3 card-title text-dark">MLOps</h5></a>
-                            <h5><p class="font-weight-bold">Machine Learning:</h5>     
-                                <ol>
-                                    <li>Time Series Analysis</li>
-                                    <li>Computer Vision</li>
-                                    <li>Deep Learning</li>
-                                    <li>Reinforcement Learning</li>
-                                    <li>Generative AI</li>
-                                </ol>
-                            <h6><p class="font-weight-bold">Cloud Development:</h6>     
-                                <ol>
-                                    <li>Kubernetes</li>
-                                    <li>Docker</li>
-                                    <li>MLflow </li>
-                                    <li>CLI</li>
-                                </ol>
-                            <h6><p class="font-weight-bold">AWS Services :</h6>     
-                                <ol>
-                                    <li>EKS/ ECS/ ECR/ EC2/ Fargate</li>
-                                    <li>S3/ RDS/ SageMaker</li>
-                                    <li>Cloud Practitioner </li>
-                                    <li>Machine Learning</li>
-                                </ol>    
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-write text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Professional Training / Lecturing</h5>
-                            <h6><p class="font-weight-bold text-muted">Training consulting with ORSYS:</h6>     
-                                <ol>
-                                    <li>Telecommunications (4G/5G, VoLTE, IoT).</li>
-                                    <li>Machine Learning/ Deep learning</li>
-                                    <li>AWS Services</li>
-                                    <li>Agile Methodology</li>
-                                </ol>
-                                <h6><p class="font-weight-bold text-muted">Part time lecturing at ESILV:</h6>     
-                                    <ol>
-                                        <li> Machine Learning, AI, Green AI</li>
-                                        <li> Python, C#, C++, Algorithmic </li>
-                                        <li>Information Theory, Data Analysis, Data Visualization.</li>
-                                    </ol>
-                        </div>
-                    </div>
-                </div>
-               
-                
-            </div>
+    <section id="expertise">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow">What I do</span><h2>Deep expertise, practical delivery.</h2></div>
+          <p>I work at the intersection of research, software engineering, and business deployment—turning complex AI ideas into reliable systems that teams and customers can use.</p>
         </div>
+        <div class="card-grid">
+          <article class="card">
+            <span class="number">01</span>
+            <h3>GenAI & Agentic Systems</h3>
+            <p>Designing multi-agent workflows, domain-specific assistants, evaluation pipelines, and production LLM applications.</p>
+            <div class="tags"><span class="tag">LLMs</span><span class="tag">LangGraph</span><span class="tag">RAG</span><span class="tag">Evaluation</span></div>
+          </article>
+          <article class="card">
+            <span class="number">02</span>
+            <h3>GraphRAG & Knowledge Systems</h3>
+            <p>Combining knowledge graphs, vector retrieval, structured data, and rules to answer difficult technical questions.</p>
+            <div class="tags"><span class="tag">Knowledge Graphs</span><span class="tag">Neptune</span><span class="tag">3GPP</span><span class="tag">Graph Retrieval</span></div>
+          </article>
+          <article class="card">
+            <span class="number">03</span>
+            <h3>MLOps & Cloud Architecture</h3>
+            <p>Building reproducible ML platforms and cloud-native pipelines with strong observability, automation, and deployment practices.</p>
+            <div class="tags"><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">MLflow</span></div>
+          </article>
+        </div>
+      </div>
     </section>
 
-
-    <!--Resume Section-->
-    <section class="section" id="resume">
-        <div class="container">
-            <h2 class="mb-5"><span class="text-danger">My</span> Resume</h2>
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                       <div class="card-header">
-                            <div class="mt-2">
-                                <h4>R&D Expertise</h4>
-                                <span class="line"></span>  
-                            </div>
-                        </div>
-                        <div class="card-body"><!--Ericsson-->
-                            <h6 class="title text-danger">Oct 2023 - Present : Ericsson R&D</h6>
-                            <P>Senior Researcher Concept AI</P>
-                            <P class="subtitle">Machine Learning Operations for RAN Automation.<br>
-                                Reinforcement Learning for Telecom on Digital Twins.<br>
-                                Project Management (Scrum for Agile)
-                            </P>
-                            <hr><!--Youree-->
-                            <h6 class="title text-danger">Jan 2021 - Sep 2023: Youree</h6>
-                            <P>Research Engineer - Data Scientist and Scrum Master</P>
-
-                            <P class="subtitle">Responsible for the research department in signal processing and AI.<br>
-                                Scrum Master:  Administered all Agile/Scrum processes<br>
-                                Deep Learning for Vehicule-to-Grid applications.
-                            </P>
-                            <hr><!--CNRS-->
-                            <h6 class="title text-danger">Mai 2019 - Dec 2020 : CNRS</h6>
-                            <P>Post Doc Researcher </P>
-                            <P class="subtitle">Investigate the performance of Time Reversal in UWB systems.<br>
-                                Improve the capacity of Reconfigurable Intelligent Surfaces(RIS)
-                            </P>
-                            <hr><!--INSA-->
-                            <h6 class="title text-danger">Oct 2015 - April 2019: Youree</h6>
-                            <P>PhD and Post Doc researcher</P>
-
-                            <P class="subtitle">Analytical study of TR precoding for MIMO Spatial Modulation.<br>
-                                Transmit and receive extended SM schemes for low complexity devices.<br>
-                                Implementation on National Instrument USRPs.
-                            </P>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                       <div class="card-header">
-                            <div class="mt-2">
-                                <h4>Education</h4>
-                                <span class="line"></span>  
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h6 class="title text-danger">2015 - 2018</h6>
-                            <h6>PhD in Digital Communications</h6>
-                            <P class="subtitle">INSA de Rennes - Rennes.</P>
-                            <hr>
-                            <h6 class="title text-danger">2014-2015</h6>
-                            <h6>Masters in Signal Processing</h6>
-                            <P class="subtitle">Grenoble INP Phelma - Grenoble</P>
-                            <hr>
-                            <h6 class="title text-danger">2010 - 2015</h6>
-                            <h6>Diploma in Telecom and Computer Engineering</h6>
-                            <P class="subtitle">Lebanese University, Faculty of Engineering - Beirut</P>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card">
-                       <div class="card-header">
-                            <div class="pull-left">
-                                <h4 class="mt-2">Skills</h4>
-                                <span class="line"></span>  
-                            </div>
-                        </div>
-                        <div class="card-body pb-2">
-                           <h6>Machine Learning</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 97%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Python, Tensorflow, Pytorch, Scikit-Learn</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Rust</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Docker</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Scrum Methodology</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Wireless Communication</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                       <div class="card-header">
-                            <div class="pull-left">
-                                <h4 class="mt-2">Languages</h4>
-                                <span class="line"></span>  
-                            </div>
-                        </div>
-                        <div class="card-body pb-2">
-                           <h6>English</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>French</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Arabic</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow">Experience</span><h2>Research with a delivery mindset.</h2></div>
+          <p>My background spans telecommunications research, AI product development, technical project leadership, consulting, and higher education.</p>
         </div>
+        <div class="experience">
+          <article class="role">
+            <div class="role-time">2023 — Present</div>
+            <div><h3>Senior Researcher Concept AI</h3><p>Leading applied GenAI, GraphRAG, multimodal document intelligence, and agentic workflow initiatives for telecom and RAN automation.</p></div>
+            <div class="role-company">Ericsson France</div>
+          </article>
+          <article class="role">
+            <div class="role-time">2021 — 2023</div>
+            <div><h3>Research Engineer & Data Scientist</h3><p>Led signal-processing and AI work, delivered deep-learning applications, and supported agile technical execution.</p></div>
+            <div class="role-company">Industry R&D</div>
+          </article>
+          <article class="role">
+            <div class="role-time">2019 — 2020</div>
+            <div><h3>Postdoctoral Researcher</h3><p>Researched advanced wireless communication systems, reconfigurable intelligent surfaces, and signal-processing methods.</p></div>
+            <div class="role-company">CNRS</div>
+          </article>
+          <article class="role">
+            <div class="role-time">Since 2019</div>
+            <div><h3>Lecturer, Trainer & Consultant</h3><p>Teaching AI, data science, MLOps, cloud, Python, and telecom to university students, engineers, and executive audiences.</p></div>
+            <div class="role-company">Universities & Clients</div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section class="section bg-dark text-center">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-6 col-lg-3">
-                    <div class="row ">
-                        <div class="col-5 text-right text-light border-right py-3">
-                            <div class="m-auto"><i class="ti-write icon-xl"></i></div>
-                        </div>
-                        <div class="col-7 text-left py-3">
-                            <h1 class="text-danger font-weight-bold font40">18</h1>
-                            <p class="text-light mb-1">Published Scientific Papers</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="row">
-                        <div class="col-5 text-right text-light border-right py-3">
-                            <div class="m-auto"><i class="ti-face-smile icon-xl"></i></div>
-                        </div>
-                        <div class="col-7 text-left py-3">
-                            <h1 class="text-danger font-weight-bold font40">+20</h1>
-                            <p class="text-light mb-1">Professional Training</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="row">
-                        <div class="col-5 text-right text-light border-right py-3">
-                            <div class="m-auto"><i class="ti-write icon-xl"></i></div>
-                        </div>
-                        <div class="col-7 text-left py-3">
-                            <h1 class="text-danger font-weight-bold font40">6</h1>
-                            <p class="text-light mb-1">Filed Patents</p>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow">Selected work</span><h2>Systems built around real problems.</h2></div>
+          <p>A selection of the technical themes I currently explore and deliver across AI, telecom, document intelligence, and MLOps.</p>
         </div>
+        <div class="projects">
+          <article class="project">
+            <div><span class="eyebrow">Knowledge systems</span><h3>GraphRAG for telecom specifications</h3><p>A hybrid retrieval architecture combining semantic search, graph relationships, rules, and structured metadata for complex 3GPP knowledge.</p></div>
+            <a class="project-link" href="https://github.com/Amokh2018" target="_blank" rel="noopener">View related repositories →</a>
+          </article>
+          <article class="project">
+            <div><span class="eyebrow">Document AI</span><h3>Multimodal document intelligence</h3><p>A production-oriented pipeline that converts PDF, DOCX, and PPTX content into structured Markdown enriched with figures, tables, equations, and VLM descriptions.</p></div>
+            <a class="project-link" href="https://github.com/Amokh2018" target="_blank" rel="noopener">Explore on GitHub →</a>
+          </article>
+          <article class="project">
+            <div><span class="eyebrow">Agentic AI</span><h3>Domain-specific agent workflows</h3><p>Multi-agent systems that coordinate retrieval, reasoning, tools, validation, and human review for specialized enterprise workflows.</p></div>
+            <a class="project-link" href="#contact">Discuss a use case →</a>
+          </article>
+          <article class="project">
+            <div><span class="eyebrow">Education</span><h3>Applied AI and MLOps training</h3><p>Hands-on courses and workshops covering modern ML systems, GenAI architecture, cloud deployment, observability, and engineering best practices.</p></div>
+            <a class="project-link" href="#contact">Request a workshop →</a>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section class="section" id="service">
-        <div class="container">
-            <h2 class="mb-5 pb-4"><span class="text-danger">My</span> Trainings</h2>
-            <div class="row">
-
-                <!--5G training-->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-write text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <a href="courses/course-5G.html"><h5 class="mb-3 card-title text-dark">5G Mobile Networks</h5></a>
-                            <h6>
-                                <li>Evolution of mobile networks</li>
-                                <li> Radio in 5G </li>
-                                <li> RAN in 5G </li>
-                                <li>Core of 5G</li>
-                                <li> Services in 5G</li>
-                            </h6>     
-                        </div>
-                    </div>
-                </div>
-                <!--4G training-->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-write text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">4G LTE</h5>
-                           
-                            <h6>
-                                <li>4G Radio - LTE</li>
-                                <li>4G Core </li>
-                                <li>Mobility and Session Management </li>
-                                <li>LTE QoS et VoLTE</li>
-                                <li>LTE Releases</li>
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-
-                <!--IoT training-->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-write text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Internet of Things</h5>
-                           
-                            <h6>
-                                <li>Concept of IoT</li>
-                                <li>IoT Networks </li>
-                                <li>Platformes and Transport </li>
-                                <li>3GPP Networks</li>
-                                <li>Security and Energie</li>
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-
-                <!--ML training-->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-write text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Machine Learning Specialization</h5>
-                            <h6>
-                                <li>Fundamentals of Machine Learning</li>
-                                <li>Advanced Machine Learning Technics</li>
-                                <li>Machine Learning Applications </li>
-                                <li>Deep Learning and Reinforcement Learning</li>
-                                <li>Hands on Labs</li>
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-                 <!--DL training-->
-                 <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-write text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Deep Learning Specialization</h5>
-                            <h6>
-                                <li>Introduction to Deep Learning</li>
-                                <li>Deep Learning Models (CNN, RNNs, GANs)</li>
-                                <li>Deep Learning Applications </li>
-                                <li>Advanced Topics in Deep Learning</li>
-                                <li>Hands on Labs</li>
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-                <!--MLOps training-->
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-write text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">MLOps for Entreprise </h5>
-                            <h6>
-                                <li>Introduction to MLOps</li>
-                                <li>MLOps Lifecycle</li>
-                                <li>Tools and Technologies</li>
-                                
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                
-            </div>
+    <section id="contact">
+      <div class="container">
+        <div class="contact">
+          <span class="eyebrow">Open to meaningful collaborations</span>
+          <h2>Let’s build something useful.</h2>
+          <p>I am interested in ambitious AI projects, technical advisory work, research collaborations, workshops, and customer-facing engineering opportunities.</p>
+          <div class="hero-actions" style="justify-content:center">
+            <a class="btn btn-primary" href="mailto:ali.mokh@gmail.com">Start a conversation</a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/in/ali-mokh/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
         </div>
+      </div>
     </section>
+  </main>
 
-   
-  
-<!--
+  <footer>
+    <div class="container footer-row">
+      <span>© <span id="year"></span> Ali Mokh. Built for clarity, speed, and impact.</span>
+      <div class="footer-links"><a href="https://github.com/Amokh2018" target="_blank" rel="noopener">GitHub</a><a href="#top">Back to top ↑</a></div>
+    </div>
+  </footer>
 
-    <section class="section" id="blog">
-        <div class="container">
-            <h2 class="mb-5">Reviews <span class="text-danger"></span></h2>
-            <div class="row">
-                <div class="blog-card">
-                    <div class="img-holder">
-                        <img src="assets/imgs/blog1.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                    </div>
-                    <div class="content-holder">
-                        <h6 class="title">Consectetur adipisicing elit</h6>
-
-                        <p class="post-details">
-                            <a href="#">By: Admin</a>
-                            <a href="#"><i class="ti-heart text-danger"></i> 234</a>
-                            <a href="#"><i class="ti-comment"></i> 123</a>
-                        </p>
-                        
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nesciunt qui sit velit delectus voluptates, repellat ipsum culpa id deleniti. Rerum debitis facilis accusantium neque numquam mollitia modi quasi distinctio.</p>
-
-                        <p><b>Necessitatibus nihil impedit! Ex nisi eveniet, dolor aliquid consequuntur repudiandae.</b></p>
-                        <p>Magnam in repellat enim harum omnis aperiam! Explicabo illo, commodi, dolor blanditiis cupiditate harum nisi vero accusamus laudantium voluptatibus dolores quae obcaecati.</p>
-
-                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
-                    </div>
-                </div>-->
-                <!-- end of blog wrapper -->
-
-                <!-- blog-card --><!--
-                <div class="blog-card">
-                    <div class="img-holder">
-                        <img src="assets/imgs/blog2.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                    </div>
-                    <div class="content-holder">
-                        <h6 class="title">Explicabo illo</h6>
-
-                        <p class="post-details">
-                            <a href="#">By: Admin</a>
-                            <a href="#"><i class="ti-heart text-danger"></i> 456</a>
-                            <a href="#"><i class="ti-comment"></i> 264</a>
-                        </p>
-                        
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit excepturi laborum enim, vitae ipsam atque eum, ad iusto consequuntur voluptas, esse doloribus. Perferendis porro quisquam vitae exercitationem aliquid, minus eos laborum repudiandae, cumque debitis iusto omnis praesentium? Laborum placeat sit adipisci illum tempore maxime, esse qui quae? Molestias excepturi corporis similique doloribus. Esse vitae earum architecto nulla non dolores illum at perspiciatis quod, et deleniti cupiditate reiciendis harum facere, delectus eum commodi soluta distinctio sit repudiandae possimus sunt. Ipsum, rem.</p>
-
-                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
-                    </div>
-                </div>--><!-- end of blog wrapper -->
-                <!-- blog-card --><!--
-                <div class="blog-card">
-                    <div class="img-holder">
-                        <img src="assets/imgs/blog3.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                    </div>
-                    <div class="content-holder">
-                        <h4 class="title">Porro Quisqua</h4>
-
-                        <p class="post-details">
-                            <a href="#">By: Admin</a>
-                            <a href="#"><i class="ti-heart text-danger"></i> 431</a>
-                            <a href="#"><i class="ti-comment"></i> 312</a>
-                        </p>
-                        
-                        <p> consectetur adipisicing elit. Impedit excepturi laborum enim, vitae ipsam atque eum, ad iusto consequuntur voluptas, esse doloribus. Perferendis porro quisquam vitae exercitationem aliquid, minus eos laborum repudiandae, cumque debitis iusto omnis praesentium? Laborum placeat sit adipisci illum tempore maxime, esse qui quae? Molestias excepturi corporis similique doloribus. Esse vitae earum architecto nulla non dolores illum at perspiciatis quod, et deleniti cupiditate reiciendis harum facere, delectus eum commodi soluta distinctio sit repudiandae possimus sunt. Ipsum, rem.</p>
-
-                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
-                    </div>
-                </div>--><!-- end of blog wrapper -->
-
-            </div>
-        </div>
-    </section>
-
-                  
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
