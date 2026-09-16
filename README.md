@@ -23,11 +23,11 @@ npm test
 npm run preview
 ```
 
-`npm run build` type-checks the site, renders all pages, optimizes the portrait, and copies generated HTML and `_astro/` assets to the repository root. Commit the source, lockfile, generated four HTML pages, `_astro/` and `.nojekyll` together. Existing GitHub Pages publishing from `main` / root continues to work without a hosting-settings change. Deployment happens only when changes are merged into main.
+`npm run build` type-checks the site, renders all pages, optimizes the portrait, and copies generated HTML and `_astro/` assets to the repository root. Commit the source, lockfile, generated four HTML pages, `_astro/` and `.nojekyll` together. GitHub Pages uses GitHub Actions: pushes to `main` build, test, upload `.build/` and deploy it. The workflow can also be run manually on `main`. Generated root files remain available for a plain static preview.
 
 The build also copies existing course pages and their assets into `.build/` for local production preview. Existing `/teaching.html`, `/consultancy.html`, `/projects.html` and course URLs are retained. The legacy course templates are preserved with their original DevCRUD assets; `gulpfile.js` belongs to those old templates and is not used by the new build.
 
-The GitHub Actions check installs dependencies, checks types, builds the site and tests the published pages. It does not merge or deploy PR branches.
+The GitHub Actions workflow installs dependencies, checks types, builds and tests the site. Pull requests run validation only. Successful pushes to `main` (or manual runs on `main`) upload the built website and deploy it through the `github-pages` environment. The deployment job has only Pages and OIDC write permissions; it runs only after the build succeeds.
 
 ## Interaction and accessibility
 
