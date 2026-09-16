@@ -1,24 +1,45 @@
-# Ali Mokh — professional portfolio
+# Ali Mokh — interactive portfolio
 
-Static multi-page portfolio, served by GitHub Pages. No build step is required for the current pages.
+Astro 7 + React 19 + TypeScript, with Motion layout transitions, Lucide icons and self-hosted Manrope / DM Serif Display fonts.
 
-- `index.html`: career, education, expertise and technical leadership direction.
-- `teaching.html`: ESILV, professional training and public course resources.
-- `consultancy.html`: advisory focus, relevant responsibilities and delivery approach.
-- `projects.html`: filterable research, project and teaching portfolio.
-- `assets/css/portfolio.css` and `assets/js/portfolio.js`: shared styling and interaction.
-- `courses/`: legacy telecom outlines; the old ML URL now routes readers to actual ML resources.
+## Work locally
 
-## Preview
+Use Node 22.12 or later.
 
-From the repository root, run `python3 -m http.server 8000` and visit http://localhost:8000.
+```sh
+npm ci
+npm run dev
+```
 
-## Content maintenance
+The four portfolio pages are authored in `src/pages/`. Shared layout, styling and interactive components live in `src/layouts/`, `src/styles/` and `src/components/`. Career, project and course content is maintained in `src/data/portfolio.ts`.
 
-Use verified roles and dates. Distinguish research themes, educational repositories and project-management responsibilities from deployed products. Do not add client results, metrics or executive titles without evidence. Keep personal and family information out of the site.
+The supplied portrait is `assets/imgs/profile.png`. Astro generates an optimized WebP for the home page; the original is preserved.
 
-The legacy `assets/pdf/my_CV.pdf` predates the current profile and is not linked as a current résumé. The on-page career section is the current summary. Work-traceability descriptions omit client identity and internal details. 3GPP Knowledge Fabric is the public-facing name for the telecom knowledge work.
+## Build, verify and publish
 
-Navigation works without JavaScript; JavaScript adds a mobile menu and category filters. Project details use native HTML disclosure controls. Reduced-motion preferences are respected.
+```sh
+npm run build
+npm test
+npm run preview
+```
 
-Legacy course pages use the original John Doe template from DevCRUD, with its bundled assets. The current four-page portfolio uses the shared portfolio stylesheet.
+`npm run build` type-checks the site, renders all pages, optimizes the portrait, and copies generated HTML and `_astro/` assets to the repository root. Commit the source, lockfile, generated four HTML pages, `_astro/` and `.nojekyll` together. Existing GitHub Pages publishing from `main` / root continues to work without a hosting-settings change. Deployment happens only when changes are merged into main.
+
+The build also copies existing course pages and their assets into `.build/` for local production preview. Existing `/teaching.html`, `/consultancy.html`, `/projects.html` and course URLs are retained. The legacy course templates are preserved with their original DevCRUD assets; `gulpfile.js` belongs to those old templates and is not used by the new build.
+
+The GitHub Actions check installs dependencies, checks types, builds the site and tests the published pages. It does not merge or deploy PR branches.
+
+## Interaction and accessibility
+
+- Career timeline filters with native expandable role details.
+- Project and course filters with animated layout updates and disclosure panels.
+- Interactive 3GPP Knowledge Fabric concept map.
+- Responsive navigation with keyboard controls and a reading-progress indicator.
+- Server-rendered content, links and disclosures remain available without JavaScript; filters appear after hydration.
+- Reduced-motion support, visible focus states, semantic landmarks and local fonts.
+
+## Content boundaries
+
+Use verified titles and dates. Present leadership as a career direction, without claiming an executive role already held. Distinguish research, exploratory repositories, teaching and project-management work. Publicly refer to the telecom knowledge work as 3GPP Knowledge Fabric. Keep work-traceability entries generic and omit client information. Do not add private personal or family details.
+
+The old PDF under `assets/pdf/` remains an archive and is not linked as a current résumé.

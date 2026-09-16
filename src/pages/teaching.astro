@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectExplorer from '../components/ProjectExplorer';
+import Icon from '../components/Icon';
+import {courses} from '../data/portfolio';
+---
+<Layout active="Teaching" title="Teaching & professional training" description="Teaching at ESILV and professional training with public courses in MLOps, GenAI, data science, Python, 4G, 5G and IoT.">
+<section class="page-hero shell"><span class="section-number">TEACHING & TRAINING / 02</span><div class="page-title-row"><h1>Understand deeply.<br/><em>Build confidently.</em></h1><Icon name="book" size={84}/></div><div class="hero-bottom"><p>I teach the foundations and practical engineering behind AI, software and telecommunications.</p><a class="text-link" href="#courses">Browse learning resources <Icon name="down" size={18}/></a></div></section>
+<section class="shell teaching-context"><article><span class="overline">UNIVERSITY · SINCE 2019</span><h2>ESILV</h2><p>AI, information theory, quantum information, Python and algorithmic complexity.</p></article><article><span class="overline">PROFESSIONAL · SINCE 2021</span><h2>Orsys</h2><p>4G/LTE, 5G, machine learning and neural networks for professional audiences.</p></article><article><span class="overline">EARLIER TEACHING · 2018–2019</span><h2>ESIEA</h2><p>Electronics, robotics and microcontrollers. A foundation in teaching through practice.</p></article></section>
+<section class="section shell" id="courses"><div class="section-heading"><div><span class="section-number">OPEN THE NOTEBOOK</span><h2>Learn the concepts.<br/><em>Work through the details.</em></h2></div><p>Public course materials, practical projects and training outlines across my wider teaching portfolio.</p></div><ProjectExplorer items={courses} kind="courses" client:visible/></section>
+<section class="teaching-principles shell"><span class="overline">HOW I TEACH</span><h2>Start with the <em>why.</em><br/>Make room for the <em>how.</em></h2><div><p>Connect the mathematical foundations to real engineering decisions. Work through examples. Question the assumptions. Leave with concepts and practices you can use.</p><a href="#contact" class="text-link">Discuss a tailored workshop <Icon name="arrow" size={18}/></a></div></section>
+</Layout>
