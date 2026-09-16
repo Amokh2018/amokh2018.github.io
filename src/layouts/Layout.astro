@@ -1,0 +1,23 @@
+---
+import '@fontsource-variable/manrope';
+import '@fontsource/dm-serif-display/400.css';
+import '@fontsource/dm-serif-display/400-italic.css';
+import '../styles/global.css';
+import Navigation from '../components/Navigation';
+import Icon from '../components/Icon';
+const {title,description,active='Home'}=Astro.props;
+const canonical=new URL(Astro.url.pathname,Astro.site);
+---
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content={description}/><meta name="theme-color" content="#10171e"/><meta name="author" content="Ali Mokh"/><link rel="canonical" href={canonical}/><meta property="og:title" content={`${title} | Ali Mokh`}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={canonical}/><title>{title} | Ali Mokh</title></head>
+<body><a class="skip-link" href="#main">Skip to content</a><div class="reading-progress" aria-hidden="true"></div><Navigation active={active} client:load/><main id="main"><slot/></main>
+<section class="contact-section" id="contact"><div class="shell"><div class="contact-top"><span class="overline">THE NEXT CONVERSATION</span><span class="contact-line"></span><Icon name="arrow" size={34}/></div><div class="contact-grid"><h2>Good ideas deserve<br/><em>thoughtful execution.</em></h2><div><p>Research collaborations, AI architecture, project delivery or a room full of curious learners. Let’s talk about what you’re building.</p><a class="email-link" href="mailto:ali.mokh@gmail.com">ali.mokh@gmail.com <Icon name="arrow" size={23}/></a></div></div></div></section>
+<footer class="site-footer"><div class="shell footer-grid"><a href="/" class="footer-name">Ali Mokh<span>, PhD</span></a><p>Researcher. Engineer. Educator.</p><a href="https://github.com/Amokh2018"><Icon name="github" size={18}/> GitHub <Icon name="arrow" size={14}/></a><span>© {new Date().getFullYear()} Ali Mokh</span></div></footer>
+<script>
+const progress=document.querySelector<HTMLElement>('.reading-progress');
+let queued=false;
+function update(){const max=document.documentElement.scrollHeight-innerHeight;if(progress)progress.style.transform=`scaleX(${max>0?scrollY/max:0})`;queued=false;}
+addEventListener('scroll',()=>{if(!queued){requestAnimationFrame(update);queued=true;}},{passive:true});
+addEventListener('resize',update);update();
+</script>
+</body></html>
